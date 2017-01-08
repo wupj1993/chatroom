@@ -1,4 +1,6 @@
-/* Copyright 2014+, Federico Zivolo, LICENSE at https://github.com/FezVrasta/bootstrap-material-design/blob/master/LICENSE.md */
+/*
+ * Copyright (c) 2017 wupj e-mail:wpjlovehome@gmail.com
+ */
 /* globals jQuery, navigator */
 
 (function($, window, document, undefined) {

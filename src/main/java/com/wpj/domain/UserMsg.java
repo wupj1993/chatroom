@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2017 wupj e-mail:wpjlovehome@gmail.com
+ */
+
 package com.wpj.domain;
 
 

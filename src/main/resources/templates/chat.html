@@ -1,9 +1,16 @@
 <!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2017 wupj e-mail:wpjlovehome@gmail.com
+  -->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <title>聊天室</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 <link th:href="@{/plugins/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
 <link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet"/>
 <link th:href="@{/plugins/bootstrap-material-design/css/bootstrap-material-design.css}" rel="stylesheet"/>
@@ -11,24 +18,174 @@
 
 <body>
 <div class="contain">
-<div>
-<div class="col-md-5" id="left_panel">
-    <div class="list-group">
-        <div class="list-group-item">
-            <div class="row-picture">
-                <img class="circle" src="http://lorempixel.com/56/56/people/1" alt="icon">
+    <div>
+        <div class="col-md-4" id="left_panel">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">个人信息</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row-picture">
+                                <img class="circle" src="/img/header.jpg" alt="icon"/>
+                            </div>
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading" th:text="${user.userName}">用户</h4>
+                                <p class="list-group-item-text" th:text="'上次登录时间'+${user.userLastLogin}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row-content">
-                <h4 class="list-group-item-heading" th:text="${user.name}">用户</h4>
-                <p class="list-group-item-text" th:text="'上次登录时间+${user.userLastLogin}'"></p>
+            <div class="panel panel-primary">
+                <div class="panel-body">
+                    <ul class="nav nav-tabs" id="friend_list" role="tablist">
+                        <li role="presentation" class="active"><a href="#good_friend" role="tab" data-toggle="tab">在线人员(2/10)</a></li>
+                        <li role="presentation"><a href="#recently_linked" role="tab" data-toggle="tab">最近联系</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="good_friend">
+                            <div class="list-group  pre-scrollable">
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h5 class="list-group-item-heading">明雨儿</h5>
+                                        <p class="list-group-item-text">喜欢你没道理</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading">似故人来</h4>
+                                        <p class="list-group-item-text">风起天阑吹醒三世菁华浮梦，一身白衣无力为伊倾尽天下</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading">似故人来</h4>
+                                        <p class="list-group-item-text">风起天阑吹醒三世菁华浮梦，一身白衣无力为伊倾尽天下</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading">似故人来</h4>
+                                        <p class="list-group-item-text">风起天阑吹醒三世菁华浮梦，一身白衣无力为伊倾尽天下</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading">似故人来</h4>
+                                        <p class="list-group-item-text">风起天阑吹醒三世菁华浮梦，一身白衣无力为伊倾尽天下</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading">似故人来</h4>
+                                        <p class="list-group-item-text">风起天阑吹醒三世菁华浮梦，一身白衣无力为伊倾尽天下</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading">似故人来</h4>
+                                        <p class="list-group-item-text">风起天阑吹醒三世菁华浮梦，一身白衣无力为伊倾尽天下</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading">似故人来</h4>
+                                        <p class="list-group-item-text">风起天阑吹醒三世菁华浮梦，一身白衣无力为伊倾尽天下</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h4 class="list-group-item-heading">似故人来</h4>
+                                        <p class="list-group-item-text">风起天阑吹醒三世菁华浮梦，一身白衣无力为伊倾尽天下</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="recently_linked">
+                            <div class="list-group  pre-scrollable">
+                                <div class="list-group-item">
+                                    <div class="row-picture">
+                                        <img class="circle" src="/img/header.jpg" alt="icon"/>
+                                    </div>
+                                    <div class="row-content">
+                                        <h5 class="list-group-item-heading">明雨儿</h5>
+                                        <p class="list-group-item-text">喜欢你没道理</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-    <div class="col-md-7" id="right_panel">
+        <div class="col-md-8" id="right_panel">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">与明雨儿聊天</h3>
+                    <p>喜欢你没道理</p>
+                </div>
+                <div class="panel-body">
 
+
+
+                    <div class="pre-scrollable" style="height:0px;padding-bottom:55%" id="chat_content">
+                   </div>
+                    <div class="form-group label-floating">
+                        <div class="input-group">
+                            <label class="control-label" for="addon3a">输入消息</label>
+                            <input type="text" id="addon3a" class="form-control"/>
+                            <span class="input-group-btn">
+                <button type="button" class="btn btn-fab btn-fab-mini">
+                  <i class="material-icons">send</i>
+                 <div class="ripple-container"></div>
+                </button>
+                             </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
 </div>
 
 </body>
@@ -37,4 +194,14 @@
 <script th:src="@{/plugins/bootstrap-material-design/js/ripples.js}"></script>
 <script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/workspace/login.js}"></script>
+<script>
+    $('#friend_list a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show')
+    });  $('#test a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show')
+    });
+
+</script>
 </html>

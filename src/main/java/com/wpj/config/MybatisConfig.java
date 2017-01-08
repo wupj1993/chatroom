@@ -9,8 +9,9 @@
 package com.wpj.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.github.pagehelper.PageHelper;
+import org.apache.ibatis.plugin.Interceptor;
+import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -94,7 +95,6 @@ public class MybatisConfig {
         Resource[] resources = new PathMatchingResourcePatternResolver().getResources(packageSearchPath);
         return resources;
     }
-
 
     @Bean
     @ConditionalOnMissingBean(name = "transactionManager")
