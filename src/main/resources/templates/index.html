@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2017 wupj e-mail:wpjlovehome@gmail.com
+  -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Thymeleaf</title>
+    <link th:href="@{/plugins/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/plugins/bootstrap-material-design/css/bootstrap-material-design.css}" rel="stylesheet"/>
+    <link th:href="@{/plugins/bootstrap-material-design/css/ripples.css}" rel="stylesheet"/>
+    <script th:src="@{/plugins/jquery/jquery.js}"></script>
+</head>
+<body>
+<label class="label label-info">Thymeleaf学习</label>
+<p th:text="${name}"></p>
+<form th:object="${name}" class="form">
+    <div class="form-control">
+        <label class="form-label">年龄</label>
+        <input th:value="${age}" type="number" placeholder=""/>
+    </div>
+    <div>
+        <label class="form-label">名字</label>
+        <p class="name" th:text="${name}">大名</p>
+    </div>
+</form>
+<div th:each="people,iterStat:${peoples}">
+    <span th:text="${iterStat.index}"></span><span></span><span th:text="${people.age}"></span>  <span th:text="${people.name}"></span>
+    <br/>
+</div>
+ <span th:text="${#locale.country}">US</span>
+<p>  Today is: <span th:text="${#calendars.format(today,'dd MMMM yyyy')}"></span></p>
+<ol>
+    <li>+：<span th:text="1+1">1+1</span>.</li>
+    <li>-： <span th:text="2-1">2-1</span>.</li>
+    <li>*：<span th:text="2*3">2*3</span>.</li>
+    <li>/： <span th:text="9/4">9/4</span>.</li>
+    <li>%：<span th:text="9%4">9%4</span>.</li>
+</ol>
+
+</body>
+</html>

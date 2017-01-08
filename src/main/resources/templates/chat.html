@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>聊天室</title>
+</head>
+<link th:href="@{/plugins/bootstrap/css/bootstrap.css}" rel="stylesheet"/>
+<link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+<link th:href="@{/plugins/bootstrap-material-design/css/bootstrap-material-design.css}" rel="stylesheet"/>
+<link th:href="@{/plugins/bootstrap-material-design/css/ripples.css}" rel="stylesheet"/>
+
+<body>
+<div class="contain">
+<div>
+<div class="col-md-5" id="left_panel">
+    <div class="list-group">
+        <div class="list-group-item">
+            <div class="row-picture">
+                <img class="circle" src="http://lorempixel.com/56/56/people/1" alt="icon">
+            </div>
+            <div class="row-content">
+                <h4 class="list-group-item-heading" th:text="${user.name}">用户</h4>
+                <p class="list-group-item-text" th:text="'上次登录时间+${user.userLastLogin}'"></p>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="col-md-7" id="right_panel">
+
+    </div>
+</div>
+</div>
+
+</body>
+<script th:src="@{/plugins/jquery/jquery.js}"></script>
+<script th:src="@{/plugins/bootstrap-material-design/js/material.js}"></script>
+<script th:src="@{/plugins/bootstrap-material-design/js/ripples.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/workspace/login.js}"></script>
+</html>

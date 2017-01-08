@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>登录</title>
+</head>
+<link th:href="@{/plugins/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+<link th:href="@{/plugins/bootstrap-material-design/css/bootstrap-material-design.css}" rel="stylesheet"/>
+<link th:href="@{/plugins/bootstrap-material-design/css/ripples.css}" rel="stylesheet"/>
+
+<body>
+<div class="containe">
+
+    <div class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="javascript:void(0)">Chat</a>
+            </div>
+            <div class="navbar-collapse collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="javascript:void(0)">首页</a></li>
+                    <li><a href="javascript:void(0)">简介</a></li>
+                    <li class="dropdown">
+                        <a href="" data-target="#" class="dropdown-toggle" data-toggle="dropdown">技术
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0)">spring boot</a></li>
+                            <li><a href="javascript:void(0)">webSocket</a></li>
+                            <li><a href="javascript:void(0)">spring mvc</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">其他</li>
+                            <li><a href="javascript:void(0)">IDE</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control col-md-8" placeholder="搜索"/>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="javascript:void(0)">作者</a></li>
+                    <li class="dropdown">
+                        <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle"
+                           data-toggle="dropdown">鸣谢
+                            <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="javascript:void(0)">Bootstrap</a></li>
+                            <li><a href="javascript:void(0)">bootstrap-material-design</a></li>
+                            <li><a href="javascript:void(0)">thymeleaf</a></li>
+                            <li class="divider"></li>
+                            <li><a href="javascript:void(0)">更多</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-offset-4 col-md-4">
+        <div class="panel panel-success ">
+            <div class="panel-heading">
+                <h3 class="panel-title">登录</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal" method="post" action="login">
+                    <fieldset>
+                        <div class="form-group label-floating col-md-12">
+                              <label class="control-label col-md-4" for="user_name">用户名</label>
+                              <div class="input-group col-md-offset-2  col-md-8">
+                                  <input type="text" name="name" id="user_name" class="form-control"/>
+                              </div>
+                        </div>
+                        <div class="form-group label-floating col-md-12">
+                            <label class="control-label col-md-4" for="user_pwd">密码</label>
+                            <div class="input-group col-md-offset-2  col-md-8">
+                                <input type="text" name="pwd" id="user_pwd" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="togglebutton">
+                                    <label>
+                                        女 <input type="checkbox" checked=""/>男
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-2">
+                                <button type="button" class="btn  btn-raised btn-default">取消</button>
+                                <button type="submit" class="btn btn-raised btn-primary">登录</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script th:src="@{/plugins/jquery/jquery.js}"></script>
+<script th:src="@{/plugins/bootstrap-material-design/js/material.js}"></script>
+<script th:src="@{/plugins/bootstrap-material-design/js/ripples.js}"></script>
+<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/workspace/login.js}"></script>
+</html>
