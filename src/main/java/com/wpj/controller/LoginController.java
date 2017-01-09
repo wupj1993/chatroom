@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
@@ -56,9 +57,14 @@ public class LoginController extends BaseController {
         userMsg.setUserName(name);
         userMsg.setUserPwd(pwd);
         List<UserMsg> userMsgs = userMsgService.select(userMsg);
+
+
         if (userMsgs.size() > 0 && userMsgs.size() <= 1) {
             userMsg = userMsgs.get(0);
             map.addAttribute("user", userMsg);
+            Example example=new Example(UserMsg.class);
+            example.createCriteria().andNotEqualTo("id",userMsg.getId());
+            map.addAttribute("friendList", userMsgService.selectByExample(example));
         } else {
             return "redirect:login";
         }

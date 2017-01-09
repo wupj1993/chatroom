@@ -45,6 +45,12 @@ public class UserMsg extends BaseDomain{
      */
     @Column(name = "user_last_login")
     private Date userLastLogin;
+    /**
+     * 用户座右铭.
+     */
+    @Column(name = "user_motto")
+
+    private String userMotto;
 
     /**
      * Gets id.
@@ -134,6 +140,24 @@ public class UserMsg extends BaseDomain{
      */
     public void setUserLastLogin(final Date userLastLogin) {
         this.userLastLogin = userLastLogin;
+    }
+
+    /**
+     * Gets user motto.
+     *
+     * @return the user motto
+     */
+    public String getUserMotto() {
+        return userMotto;
+    }
+
+    /**
+     * Sets user motto.
+     *
+     * @param userMotto the user motto
+     */
+    public void setUserMotto(String userMotto) {
+        this.userMotto = userMotto;
     }
 
     @Override

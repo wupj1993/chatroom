@@ -14,6 +14,7 @@
     <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
     <result column="user_activity" property="userActivity" jdbcType="BIT"/>
     <result column="user_last_login" property="userLastLogin" jdbcType="TIMESTAMP" />
+    <result column="user_motto" property="userMotto" jdbcType="VARCHAR" />
   </resultMap>
   <select id="selectByUserName" resultType="com.wpj.domain.UserMsg">
     select * from user_msg WHERE user_name=#{userName};
