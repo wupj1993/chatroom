@@ -20,7 +20,7 @@ function connect() {
             var userId=$("#user_id").val();
             stompClient.subscribe('/single/' + userId + '/chat', function(message){
                 console.log("单独聊",message);
-                showGreeting(message);
+                showSingle(message);
             });
         });
     }
@@ -36,16 +36,27 @@ function sendMsg() {
     stompClient.send("/group", {}, JSON.stringify({'content': $("#user_message").val()}));
 }
 function sendSingleMsg() {
-    debugger
-    stompClient.send("/chat", {}, JSON.stringify({'content': $("#user_message").val(),userId:$("toId").val()}));
+    stompClient.send("/chat", {}, JSON.stringify({'content': $("#user_message").val(),toUser:$("#toId").val()}));
+    var msg="<div class='alert alert-dismissible alert-info text-right'>"+
+        ""+$("#user_message").val()+" <strong>:我</strong></div>"
+    $("#chat_content").append(msg);
 }
 function showGreeting(message) {
-    var message= JSON.parse(message.body)
+    var message= JSON.parse(message.body);
     var userName=message.userName;
     var content=JSON.parse(message.content).content;
     console.log(message);
     var msg="<div class='alert alert-dismissible alert-default'>"+
      "<strong>"+userName+":</strong>"+content+" </div>"
+    $("#chat_content").append(msg);
+}
+function showSingle(message) {
+    var message= JSON.parse(message.body);
+    var userName=message.userName;
+    var content=message.content;
+    console.log(message);
+    var msg="<div class='alert alert-dismissible alert-primary'>"+
+        "<strong>"+userName+":</strong>"+content+" </div>"
     $("#chat_content").append(msg);
 }
 function initTab() {
