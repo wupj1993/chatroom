@@ -15,8 +15,26 @@
     <result column="user_activity" property="userActivity" jdbcType="BIT"/>
     <result column="user_last_login" property="userLastLogin" jdbcType="TIMESTAMP" />
     <result column="user_motto" property="userMotto" jdbcType="VARCHAR" />
+    <result column="user_email" property="userEmail" jdbcType="VARCHAR" />
+    <result column="user_nick" property="userNick" jdbcType="VARCHAR" />
   </resultMap>
-  <select id="selectByUserName" resultType="com.wpj.domain.UserMsg">
-    select * from user_msg WHERE user_name=#{userName};
+  <resultMap id="authResultMap" type="com.wpj.domain.UserMsg" extends="BaseResultMap">
+    <association property="userRoleSet" javaType="com.wpj.domain.UserRole" >
+      <id column="id" property="id" javaType="java.lang.String"></id>
+      <result column="rolesName" javaType="java.lang.String" property="name"></result>
+      <result column="uid" javaType="java.lang.String" property="uid"></result>
+    </association>
+  </resultMap>
+  <select id="selectByUserName" parameterType="com.wpj.domain.UserMsg" resultMap="authResultMap">
+    SELECT
+    su.*,
+    srole.name AS  rolesName
+    FROM user_msg as su
+    LEFT JOIN user_role srole on su.id=srole.uid
+    <trim prefix="where" prefixOverrides="AND |OR " >
+      <if test="userName!=null">
+        su.user_name=#{userName}
+      </if>
+    </trim>
   </select>
 </mapper>

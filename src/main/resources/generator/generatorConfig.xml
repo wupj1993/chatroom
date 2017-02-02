@@ -41,7 +41,7 @@
         <!--<table tableName="EMPLOYEES">-->
             <!--<generatedKey column="ID" sqlStatement="Mysql" identity="true"/>-->
         <!--</table>-->
-        <table tableName="user_msg">
+        <table tableName="user_role">
         <generatedKey column="id" sqlStatement="Mysql" identity="true" />
     </table>
         <!--<table tableName="USER_TYPE">-->

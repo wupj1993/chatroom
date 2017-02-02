@@ -6,6 +6,8 @@ package com.wpj.constant;
 
 import com.wpj.util.MyMapper;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * The type Constant.
  *
@@ -33,4 +35,5 @@ public final class Constant {
      */
     private Constant() {
     }
+    public static final HttpSession SESSION=null;
 }

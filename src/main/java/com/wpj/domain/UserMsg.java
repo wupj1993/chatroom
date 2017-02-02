@@ -5,11 +5,10 @@
 package com.wpj.domain;
 
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The type User msg.
@@ -51,7 +50,21 @@ public class UserMsg extends BaseDomain{
     @Column(name = "user_motto")
 
     private String userMotto;
-
+    /**
+     * 用户邮箱.
+     */
+    @Column(name = "user_email")
+    private String userEmail;
+    /**
+     * 用户拥有的权限.
+     */
+    @Transient
+    private Set<UserRole> userRoleSet = new HashSet<>(0);
+    /**
+     * 昵称
+     */
+    @Column(name = "user_nick")
+    private String userNick;
     /**
      * Gets id.
      *
@@ -160,6 +173,50 @@ public class UserMsg extends BaseDomain{
         this.userMotto = userMotto;
     }
 
+    /**
+     * Gets user email.
+     *
+     * @return the user email
+     */
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    /**
+     * Sets user email.
+     *
+     * @param userEmail the user email
+     */
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    /**
+     * Gets user role set.
+     *
+     * @return the user role set
+     */
+    public Set<UserRole> getUserRoleSet() {
+        return userRoleSet;
+    }
+
+    /**
+     * Sets user role set.
+     *
+     * @param userRoleSet the user role set
+     */
+    public void setUserRoleSet(Set<UserRole> userRoleSet) {
+        this.userRoleSet = userRoleSet;
+    }
+
+    public String getUserNick() {
+        return userNick;
+    }
+
+    public void setUserNick(String userNick) {
+        this.userNick = userNick;
+    }
+
     @Override
     public String toString() {
         return "UserMsg{" +
@@ -168,6 +225,10 @@ public class UserMsg extends BaseDomain{
                 ", userPwd='" + userPwd + '\'' +
                 ", userActivity=" + userActivity +
                 ", userLastLogin=" + userLastLogin +
+                ", userMotto='" + userMotto + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userRoleSet=" + userRoleSet +
+                ", userNick='" + userNick + '\'' +
                 '}';
     }
 }

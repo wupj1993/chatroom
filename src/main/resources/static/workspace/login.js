@@ -4,4 +4,7 @@
 
 $(function () {
     $.material.init();
+    function logout() {
+        $("#logout").submit();
+    }
 });

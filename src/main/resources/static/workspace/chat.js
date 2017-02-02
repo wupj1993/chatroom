@@ -22,6 +22,11 @@ function connect() {
                 console.log("单独聊",message);
                 showSingle(message);
             });
+            stompClient.subscribe('/single/'+userId+'/friend',function (message) {
+               console.log("消息来了",message);
+                showFriend(message);
+            });
+            friendList();
         });
     }
 
@@ -52,11 +57,13 @@ function showGreeting(message) {
 }
 function showSingle(message) {
     var message= JSON.parse(message.body);
-    var userName=message.userName;
+    var fromUser=$("#talk_with").val();
     var content=message.content;
+    // 首先判断当前是否是发送消息来的用户聊天界面（有没有正在和他聊天）、
+    //<span class="withripple label label-danger">+12</span> 目前先做发来消息冒泡
     console.log(message);
     var msg="<div class='alert alert-dismissible alert-primary'>"+
-        "<strong>"+userName+":</strong>"+content+" </div>"
+        "<strong>"+fromUser+":</strong>"+content+" </div>"
     $("#chat_content").append(msg);
 }
 function initTab() {
@@ -72,10 +79,42 @@ function initTab() {
  * 点击好友
  */
 function chatWith(element) {
-    console.log(element);
     var id=element.getAttribute("data-id");
-    console.log(id);
     $("#toId").val(id);
+    $("#talk_with").val($("div[data-id="+id+"] div[class=row-content]>h5")[0].innerHTML);
+    $("#now_user").html($("div[data-id="+id+"] div[class=row-content]>h5")[0].innerHTML);
+    $("#now_user_motto").html($("div[data-id="+id+"] div[class=row-content]>p")[0].innerHTML);
+}
+/**
+ * 注销.
+ */
+function logout() {
+    $("#logout").submit();
+}
+/**
+ * 好友列表
+ */
+function friendList() {
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    stompClient.send("/friend/list", {},{_csrf:token,_csrf_header:header});
+}
+/**
+ * 展示好友
+ */
+function showFriend(friends) {
+    var friends= JSON.parse(friends.body);
+    var list="";
+    $.each(friends,function (index,item) {
+        list +=" <div class='list-group-item' data-id="+item.id+"><div class='row-picture'><img class='circle' src='/img/header.jpg' alt='icon'/>  </div>"
+            +"<div class='row-content'> <h5 class=list-group-item-heading>"+item.userNick+"</h5>"
+            +" <p class='list-group-item-text'>"+item.userMotto+"</p> </div></div>"
+            +" <div class='list-group-separator'></div></div>";
+    });
+    $("#friends").append(list);
+    $(".list-group-item").click(function () {
+        chatWith($(this).context);
+    });
 }
 
 $(function () {
@@ -86,8 +125,6 @@ $(function () {
         // sendMsg();
         sendSingleMsg();
     });
-    $(".list-group-item").click(function () {
-        chatWith($(this).context);
-    });
+
     initTab();
 });

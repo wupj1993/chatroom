@@ -11,8 +11,6 @@ import com.wpj.service.UserMsgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * The type User msg service.
  *
@@ -23,8 +21,9 @@ public class UserMsgServiceImpl  extends BaseService<UserMsg> implements UserMsg
     @Autowired
     private UserMsgMapper userMsgMapper;
     @Override
-    public List<UserMsg> selectByUserName(String userName) {
+    public UserMsg selectByUserName(String userName) {
 
         return userMsgMapper.selectByUserName(userName);
     }
+
 }

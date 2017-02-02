@@ -4,17 +4,13 @@
 
 package com.wpj.controller;
 
-import com.wpj.domain.UserMsg;
 import com.wpj.service.UserMsgService;
+import com.wpj.util.SecurityTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import tk.mybatis.mapper.entity.Example;
-
-import java.util.List;
 
 /**
  * The type Login controller.
@@ -41,33 +37,13 @@ public class LoginController extends BaseController {
     }
 
     /**
-     *
-     * @param name 名字
-     * @param pwd 密码
-     * @param map 传参数
-     *  @return 聊天室页面
+     * 登录成功
+     * @param map
+     * @return
      */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String checkUser(
-            @RequestParam(name = "name", required = true)final String name,
-            @RequestParam(name = "pwd", required = true)final String pwd,
-            final ModelMap map
-    ) {
-        UserMsg userMsg = new UserMsg();
-        userMsg.setUserName(name);
-        userMsg.setUserPwd(pwd);
-        List<UserMsg> userMsgs = userMsgService.select(userMsg);
-
-
-        if (userMsgs.size() > 0 && userMsgs.size() <= 1) {
-            userMsg = userMsgs.get(0);
-            map.addAttribute("user", userMsg);
-            Example example=new Example(UserMsg.class);
-            example.createCriteria().andNotEqualTo("id",userMsg.getId());
-            map.addAttribute("friendList", userMsgService.selectByExample(example));
-        } else {
-            return "redirect:login";
-        }
+    @RequestMapping("/success")
+    public String success(final ModelMap map){
+        map.addAttribute("user",SecurityTools.getUserMsg());
         return "chat";
     }
 }
