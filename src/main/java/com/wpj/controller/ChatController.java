@@ -62,8 +62,6 @@ public class ChatController extends BaseController {
     @SendToUser(value = "/chat", broadcast = false)
     public void singleChat(final SingleMsg singleMsg
     ) {
-
-        singleMsg.setFromUser("什么");
         singleMsg.setSendTime(new Date());
         template.convertAndSendToUser(singleMsg.getToUser(),
                 "/chat", singleMsg);

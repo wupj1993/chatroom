@@ -18,7 +18,6 @@ public class SecurityUser extends UserMsg implements UserDetails
 {
 
 	private static final long serialVersionUID = 1L;
-
 	public SecurityUser(UserMsg userMsg) {
         if(userMsg != null)
 		{

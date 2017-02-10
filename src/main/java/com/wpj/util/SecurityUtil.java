@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 
 import javax.servlet.http.HttpServletRequest;
 
-public class SecurityTools {
+public class SecurityUtil {
     public static Authentication authentication;
     public static <T extends UserMsg> T getCurrentUser() {
         Authentication authentication = getAuthentication();

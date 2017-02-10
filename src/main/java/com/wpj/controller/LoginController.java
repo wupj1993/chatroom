@@ -4,8 +4,10 @@
 
 package com.wpj.controller;
 
+import com.wpj.model.SecurityUser;
+import com.wpj.service.SecurityUserService;
 import com.wpj.service.UserMsgService;
-import com.wpj.util.SecurityTools;
+import com.wpj.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,7 +27,11 @@ public class LoginController extends BaseController {
      */
     @Autowired
     private UserMsgService userMsgService;
-
+    /**
+     * redis
+     */
+    @Autowired
+    private SecurityUserService securityUserService;
     /**
      * Login 页面.
      *
@@ -43,7 +49,8 @@ public class LoginController extends BaseController {
      */
     @RequestMapping("/success")
     public String success(final ModelMap map){
-        map.addAttribute("user",SecurityTools.getUserMsg());
+        map.addAttribute("user", SecurityUtil.getUserMsg());
+        securityUserService.saveSecurity((SecurityUser) SecurityUtil.getUserMsg());
         return "chat";
     }
 }
