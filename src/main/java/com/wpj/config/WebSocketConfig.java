@@ -10,6 +10,8 @@ import org.springframework.web.socket.config.annotation.AbstractWebSocketMessage
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
+import javax.websocket.OnClose;
+
 /**
  * websocket配置类.
  *
@@ -32,6 +34,11 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/chat").withSockJS().setInterceptors(httpSessionIdHandshakeInterceptor);
+    }
+
+    @OnClose
+    public void close() {
+        System.out.println("下线了");
     }
 
 }

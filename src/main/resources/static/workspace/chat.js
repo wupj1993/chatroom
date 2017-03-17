@@ -6,7 +6,7 @@
  * Created by WPJ587 on 2017/1/9.
  */
 var stompClient = null;
-
+var chatType = 0;
 function connect() {
     if(stompClient==null){
         var socket = new SockJS('/chat');
@@ -15,7 +15,7 @@ function connect() {
             console.log('Connected: ' + frame);
             stompClient.subscribe('/groups/chatting', function (greeting) {
                 console.log("服务器",greeting);
-                showGreeting(greeting);
+                groupChatting(greeting);
             });
             var userId=$("#user_id").val();
             stompClient.subscribe('/single/' + userId + '/chat', function(message){
@@ -46,12 +46,12 @@ function sendSingleMsg() {
         ""+$("#user_message").val()+" <strong>:我</strong></div>"
     $("#chat_content").append(msg);
 }
-function showGreeting(message) {
+function groupChatting(message) {
     var message= JSON.parse(message.body);
     var userName=message.userName;
     var content=JSON.parse(message.content).content;
     console.log(message);
-    var msg="<div class='alert alert-dismissible alert-default'>"+
+    var msg = "<div class='alert alert-dismissible alert-success'>" +
      "<strong>"+userName+":</strong>"+content+" </div>"
     $("#chat_content").append(msg);
 }
@@ -70,9 +70,13 @@ function initTab() {
     $('#friend_list a').click(function (e) {
         e.preventDefault();
         $(this).tab('show')
-    });  $('#test a').click(function (e) {
+    });
+    $('#test a').click(function (e) {
         e.preventDefault();
         $(this).tab('show')
+    });
+    $(".group-chat").click(function (e) {
+        chatType = 1;
     });
 }
 /**
@@ -106,13 +110,14 @@ function showFriend(friends) {
     var friends= JSON.parse(friends.body);
     var list="";
     $.each(friends,function (index,item) {
-        list +=" <div class='list-group-item' data-id="+item.id+"><div class='row-picture'><img class='circle' src='/img/header.jpg' alt='icon'/>  </div>"
+        list += " <div class='list-group-item single-chat' data-id=" + item.id + "><div class='row-picture'><img class='circle' src='/img/header.jpg' alt='icon'/>  </div>"
             +"<div class='row-content'> <h5 class=list-group-item-heading>"+item.userNick+"</h5>"
             +" <p class='list-group-item-text'>"+item.userMotto+"</p> </div></div>"
             +" <div class='list-group-separator'></div></div>";
     });
     $("#friends").append(list);
-    $(".list-group-item").click(function () {
+    $(".single-chat").click(function () {
+        chatType = 0;
         chatWith($(this).context);
     });
 }
@@ -122,8 +127,12 @@ $(function () {
     connect();
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send_msg" ).click(function() {
-        // sendMsg();
-        sendSingleMsg();
+        if (chatType == 0) {
+            sendSingleMsg();
+        } else {
+            sendMsg();
+        }
+
     });
 
     initTab();

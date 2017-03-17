@@ -25,6 +25,7 @@ import java.util.List;
  **/
 @Controller
 public class ChatController extends BaseController {
+
     /**
      * 自定义发送信息时候用.
      */
@@ -48,7 +49,7 @@ public class ChatController extends BaseController {
                                   final String content) {
         GroupMessage groupMessage = new GroupMessage();
         groupMessage.setContent(content);
-        groupMessage.setUserName("明雨儿");
+        groupMessage.setUserName("");
         groupMessage.setSendTime(new Date());
         return groupMessage;
     }
@@ -101,5 +102,6 @@ public class ChatController extends BaseController {
                 "/friend", userMsgs);
 
     }
+
 
 }

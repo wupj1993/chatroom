@@ -5,7 +5,7 @@
 package com.wpj.controller;
 
 import com.wpj.model.SecurityUser;
-import com.wpj.service.SecurityUserService;
+import com.wpj.model.bo.OnlineBO;
 import com.wpj.service.UserMsgService;
 import com.wpj.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +27,7 @@ public class LoginController extends BaseController {
      */
     @Autowired
     private UserMsgService userMsgService;
-    /**
-     * redis
-     */
-    @Autowired
-    private SecurityUserService securityUserService;
+
     /**
      * Login 页面.
      *
@@ -50,7 +46,12 @@ public class LoginController extends BaseController {
     @RequestMapping("/success")
     public String success(final ModelMap map){
         map.addAttribute("user", SecurityUtil.getUserMsg());
-        securityUserService.saveSecurity((SecurityUser) SecurityUtil.getUserMsg());
+//       securityUserService.saveSecurity((SecurityUser) SecurityUtil.getUserMsg());
+        SecurityUser userMsg = (SecurityUser) SecurityUtil.getUserMsg();
+        OnlineBO onlineBO = new OnlineBO();
+        onlineBO.setUserId(userMsg.getId());
+        onlineBO.setUserName(userMsg.getUserName());
+        userMsgService.saveOnlineBO(onlineBO);
         return "chat";
     }
 }
